@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1145bef2a2644a21a5f8fea43ac59ffb" Name="Diagram1">
+        <EntityTypeShape EntityType="KursovayaModel.AvailabilityAddress" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KursovayaModel.DeliveryAddress" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="KursovayaModel.Good" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KursovayaModel.GoodAvailableAddress" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="KursovayaModel.GoodCategory" Width="1.5" PointX="1.5" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="KursovayaModel.Order" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KursovayaModel.OrderGood" Width="1.5" PointX="7.5" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KursovayaModel.OrderStatus" Width="1.5" PointX="3" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="KursovayaModel.PaymentMethod" Width="1.5" PointX="3" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KursovayaModel.Review" Width="1.5" PointX="10.5" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KursovayaModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="KursovayaModel.User" Width="1.5" PointX="3" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KursovayaModel.UserRole" Width="1.5" PointX="0.75" PointY="16.625" IsExpanded="true" />
+        <AssociationConnector Association="KursovayaModel.FK_DeliveryAddress_AvailabilityAddress" ManuallyRouted="false" />
+        <AssociationConnector Association="KursovayaModel.FK_GoodAvailableAddress_AvailabilityAddress" ManuallyRouted="false" />
+        <AssociationConnector Association="KursovayaModel.FK_Order_DeliveryAddress" ManuallyRouted="false" />
+        <AssociationConnector Association="KursovayaModel.FK_Good_GoodCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="KursovayaModel.FK_GoodAvailableAddress_Good" ManuallyRouted="false" />
+        <AssociationConnector Association="KursovayaModel.FK_OrderGood_Good" ManuallyRouted="false" />
+        <AssociationConnector Association="KursovayaModel.FK_Order_CourierUser" ManuallyRouted="false" />
+        <AssociationConnector Association="KursovayaModel.FK_Order_CustomerUser" ManuallyRouted="false" />
+        <AssociationConnector Association="KursovayaModel.FK_Order_FloristUser" ManuallyRouted="false" />
+        <AssociationConnector Association="KursovayaModel.FK_Order_OrderStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="KursovayaModel.FK_Order_PaymentMethod" ManuallyRouted="false" />
+        <AssociationConnector Association="KursovayaModel.FK_OrderGood_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="KursovayaModel.FK_Review_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="KursovayaModel.FK_Review_CustomerUser" ManuallyRouted="false" />
+        <AssociationConnector Association="KursovayaModel.FK_User_UserRole" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
