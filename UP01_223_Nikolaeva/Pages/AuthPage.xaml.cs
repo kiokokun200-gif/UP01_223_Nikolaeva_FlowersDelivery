@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -20,10 +21,21 @@ namespace UP01_223_Nikolaeva.Pages
     /// Логика взаимодействия для AuthPage.xaml
     /// </summary>
     public partial class AuthPage : Page
+
     {
+        private int failedAttemps = 0;
         public AuthPage()
         {
             InitializeComponent();
+        }
+        public static string GetHash(String password)
+        {
+            using (var hash = SHA1.Create())
+            {
+                return
+                string.Concat(hash.ComputeHash(Encoding.UTF8.GetBytes(password)).Select(x =>
+                x.ToString("X2")));
+            }
         }
 
         private void BtnRegister_Click(object sender, RoutedEventArgs e)
@@ -36,14 +48,16 @@ namespace UP01_223_Nikolaeva.Pages
                 MessageBox.Show("Заполните все поля");
                 return;
             }
+            string hashedPassword = GetHash(password);
 
-            if(Login(login, password))
+            if (Login(login, password))
             {
                 MessageBox.Show("Успешный вход");
             }
             else
             {
-                MessageBox.Show("Аккаунт не найден")
+                MessageBox.Show("Аккаунт не найден");
+                failedAttemps++;
             }
 
         }
@@ -78,10 +92,15 @@ namespace UP01_223_Nikolaeva.Pages
             {
                 MessageBox.Show("Регистрация успешна");
             }
+            else
+            {
+                MessageBox.Show("Для этой почты уже есть учетная запись");
+            }
         }
 
         private bool Registr(string login, string password, string phone, string name)
         {
+            if (Core.context.User.Any(u => u.Email == login)) return false;
             User newUser = new User()
             {
                 Name = name,
@@ -95,6 +114,11 @@ namespace UP01_223_Nikolaeva.Pages
             Core.context.SaveChanges(); 
             UserData.CurrentUser = newUser;
             return true;
+        }
+
+        private void BtnSubmitCaptcha_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
