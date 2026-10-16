@@ -29,10 +29,27 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
-                        
-                        <Image Source="{Binding Image}" Width="100" Height="100"/>
+                        <Grid>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.ColumnSpan="2" Source="{Binding Image}" Width="100" Height="100"/>
+
+                            <Button Content="✎" Width="20" Height="20" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FFBDFFA0" Visibility="{Binding VisIsAdmin}"/>
+                            <Button Content="🗑️" Width="20" Height="20" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#FFF3657B" Visibility="{Binding VisIsAdmin}"/>
+
+                        </Grid>
                         <TextBlock Text="{Binding Name}"/>
+                        
                         <TextBlock Text="{Binding Price, StringFormat={}{0} ₽}" FontSize="18"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Rating, StringFormat=★ {0}}"/>
+                            <TextBlock Text="{Binding ReviewCount}" Margin="3 0"/>
+                        </StackPanel>
+                        
+
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>

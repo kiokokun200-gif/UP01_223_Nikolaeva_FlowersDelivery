@@ -15,13 +15,13 @@ namespace UP01_223_Nikolaeva.Model
     public partial class Review
     {
         public int ID { get; set; }
-        public int OrderID { get; set; }
+        public int GoodID { get; set; }
         public int CustomerID { get; set; }
         public int Rating { get; set; }
         public string Comment { get; set; }
         public System.DateTime Date { get; set; }
     
-        public virtual Order Order { get; set; }
+        public virtual Good Good { get; set; }
         public virtual User User { get; set; }
     }
 }

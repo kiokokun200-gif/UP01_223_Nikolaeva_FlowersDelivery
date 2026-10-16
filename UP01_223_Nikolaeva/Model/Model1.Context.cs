@@ -13,10 +13,10 @@ namespace UP01_223_Nikolaeva.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class KursovayaEntities1 : DbContext
+    public partial class KursovayaEntities3 : DbContext
     {
-        public KursovayaEntities1()
-            : base("name=KursovayaEntities1")
+        public KursovayaEntities3()
+            : base("name=KursovayaEntities3")
         {
         }
     
@@ -35,7 +35,6 @@ namespace UP01_223_Nikolaeva.Model
         public virtual DbSet<OrderStatus> OrderStatus { get; set; }
         public virtual DbSet<PaymentMethod> PaymentMethod { get; set; }
         public virtual DbSet<Review> Review { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<UserRole> UserRole { get; set; }
     }

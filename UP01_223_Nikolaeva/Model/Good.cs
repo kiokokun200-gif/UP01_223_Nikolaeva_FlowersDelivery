@@ -19,6 +19,7 @@ namespace UP01_223_Nikolaeva.Model
         {
             this.GoodAvailableAddress = new HashSet<GoodAvailableAddress>();
             this.OrderGood = new HashSet<OrderGood>();
+            this.Review = new HashSet<Review>();
         }
     
         public int ID { get; set; }
@@ -32,5 +33,7 @@ namespace UP01_223_Nikolaeva.Model
         public virtual ICollection<GoodAvailableAddress> GoodAvailableAddress { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderGood> OrderGood { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Review> Review { get; set; }
     }
 }

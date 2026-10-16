@@ -76,7 +76,27 @@ namespace UP01_223_Nikolaeva.Pages
 
         private void SearchSortFilrt()
         {
-            
+            var result = goods;
+            if (search.Length > 0)
+            {
+                result = result.Where(s => s.Name.Contains(search)).ToList();
+            }
+            if(selectefFiltr != "Все")
+            {
+                result = result.Where(s => s.GoodCategory.Name ==  selectefFiltr).ToList();
+            }
+            if (selectedSort == "Сначала лучшие")
+            {
+                //фильтрация по рейтингу, добавить
+            }
+            else if (selectedSort == "Сначала дороже")
+            {
+                result.OrderByDescending(u=> u.Price);
+            }
+            else result.OrderBy(u=> u.Price);
+
+            ListBoxGoods.ItemsSource = result;
+
 
         }
 

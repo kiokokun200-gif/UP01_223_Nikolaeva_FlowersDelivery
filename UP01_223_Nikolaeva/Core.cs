@@ -9,6 +9,6 @@ namespace UP01_223_Nikolaeva
 {
     public static class Core
     {
-        public static KursovayaEntities1 context = new KursovayaEntities1();
+        public static KursovayaEntities3 context = new KursovayaEntities3();
     }
 }
