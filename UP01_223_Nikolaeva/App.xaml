@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:UP01_223_Nikolaeva"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary Source="/DictionaryStyle.xaml"/>
     </Application.Resources>
 </Application>

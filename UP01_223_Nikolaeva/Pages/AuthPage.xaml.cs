@@ -40,6 +40,91 @@ namespace UP01_223_Nikolaeva.Pages
 
         private void BtnRegister_Click(object sender, RoutedEventArgs e)
         {
+            
+
+
+            string name = TxtBoxRegName.Text;
+            string login = TxtBoxRegLogin.Text;
+            string phone = TxtBoxRegPhone.Text;
+            string password = PassRegPassword.Password;
+
+            if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(name) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(phone))
+            {
+                MessageBox.Show("Заполните все поля");
+                return;
+            }
+            string mess;
+            if(!CheckPassword(password, out mess))
+            {
+                MessageBox.Show(mess);
+                return;
+            }
+
+
+
+            if (Registr(login, password, phone, name))
+            {
+                MessageBox.Show("Регистрация успешна");
+                NavigationService.Navigate(new MainPage());
+            }
+            else
+            {
+                MessageBox.Show("Для этой почты уже есть учетная запись");
+            }
+        }
+
+        private bool CheckPassword(string password, out string message)
+        {
+            if(password.Length < 6)
+            {
+                message = "Пароль слишком короткий, должно быть минимум 6 символов!";
+                return false;
+            }
+            bool containDigit = false;
+            bool english = true;
+            for (int i = 0; i < password.Length; i++) {
+                if (char.IsDigit(password[i]))
+                {
+                    containDigit = true;
+
+                }
+                else if (!((password[i] >= 'A' && password[i] <= 'Z') || (password[i] >= 'a' && password[i] <= 'z' )))
+                {
+                    english = false;
+                }
+
+            }
+            if (!containDigit) {
+                message = "Пароль должен содержать цифру";
+                return false;
+            }
+
+            else if(!english)
+            {
+                message = "Пароль должен состоять из английских букв";
+                return false;
+            }
+            else
+            {
+                message = "";
+                return true;
+            }
+        }
+
+        private bool Login(string login, string password)
+        {
+            string hashPass = GetHash(password);
+            var user = Core.context.User.FirstOrDefault(u => u.Email == login && u.Password == hashPass);
+            if (user == null) return false;
+            else
+            {
+                UserData.CurrentUser = user;
+                return true;
+            }
+        }
+
+        private void BtnLogin_Click(object sender, RoutedEventArgs e)
+        {
             string login = TxtBoxLogin.Text;
             string password = PassPassword.Password;
 
@@ -53,6 +138,7 @@ namespace UP01_223_Nikolaeva.Pages
             if (Login(login, password))
             {
                 MessageBox.Show("Успешный вход");
+                NavigationService.Navigate(new MainPage());
             }
             else
             {
@@ -60,41 +146,9 @@ namespace UP01_223_Nikolaeva.Pages
                 failedAttemps++;
             }
 
-        }
-
-        private bool Login(string login, string password)
-        {
-            var user = Core.context.User.FirstOrDefault(u => u.Email == login && u.Password == password);
-            if (user == null) return false;
-            else
+            if (failedAttemps > 2)
             {
-                UserData.CurrentUser = user;
-                return true;
-            }
-        }
-
-        private void BtnLogin_Click(object sender, RoutedEventArgs e)
-        {
-
-            string name = TxtBoxRegName.Text;
-            string login = TxtBoxRegLogin.Text;
-            string phone = TxtBoxRegPhone.Text;
-            string password = PassRegPassword.Password;
-
-            if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(name) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(phone))
-            {
-                MessageBox.Show("Заполните все поля");
-                return;
-            }
-
-
-            if(Registr(login, password, phone, name))
-            {
-                MessageBox.Show("Регистрация успешна");
-            }
-            else
-            {
-                MessageBox.Show("Для этой почты уже есть учетная запись");
+                SwitchCaptcha(true);
             }
         }
 
@@ -106,7 +160,7 @@ namespace UP01_223_Nikolaeva.Pages
                 Name = name,
                 Email = login,
                 Phone = phone,
-                Password = password,
+                Password = GetHash(password),
                 RoleID = 1,
 
             };
@@ -115,9 +169,67 @@ namespace UP01_223_Nikolaeva.Pages
             UserData.CurrentUser = newUser;
             return true;
         }
+        private void SwitchCaptcha(bool hide)
+        {
+            if (hide)
+            {
+                StackLogin.Visibility = Visibility.Collapsed;
+                StackCaptcha.Visibility = Visibility.Visible;
+                TxtBoxLogin.Text = string.Empty;
+                PassPassword.Password = string.Empty;
+                CaptchaChange();
+            }
+            else
+            {
+                StackCaptcha.Visibility = Visibility.Collapsed;
+                StackLogin.Visibility = Visibility.Visible;
+            }
+        }
+        private void CaptchaChange()
+        {
+            String allowchar = " ";
+            allowchar = "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z";
+            allowchar += "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,y,z";
+            allowchar += "1,2,3,4,5,6,7,8,9,0";
+            char[] a = { ',' };
+            String[] ar = allowchar.Split(a);
+            String pwd = "";
+            string temp = "";
+            Random r = new Random();
+            for (int i = 0; i < 6; i++)
+            {
+                temp = ar[(r.Next(0, ar.Length))];
+                pwd += temp;
+            }
+            TxtBoxCaptcha.Text = pwd;
+        }
+
 
         private void BtnSubmitCaptcha_Click(object sender, RoutedEventArgs e)
         {
+            if (TxtBoxCaptchaInput.Text != TxtBoxCaptcha.Text)
+            {
+                MessageBox.Show("Неверно введена капча", "Ошибка");
+                CaptchaChange();
+            }
+            else
+            {
+                MessageBox.Show("Капча введена успешно, можете продолжить авторизацию", "Успех");
+
+                SwitchCaptcha(false);
+                failedAttemps = 0;
+            }
+
+        }
+
+        private void TxtBoxCaptchaInput_PreviewExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (e.Command == ApplicationCommands.Copy ||
+            e.Command == ApplicationCommands.Cut ||
+            e.Command == ApplicationCommands.Paste)
+            {
+                e.Handled = true;
+            }
 
         }
     }

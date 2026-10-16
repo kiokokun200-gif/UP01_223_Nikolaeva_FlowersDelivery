@@ -22,15 +22,15 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <StackPanel Orientation="Horizontal" x:Name="StackLogin">
-                    <StackPanel Grid.Column="0" Grid.Row="0">
-                        <Label Content="Логин:" x:Name="LabelLogin" />
-                        <Label Content="Пароль:" x:Name="LabelPass"/>
+                        <StackPanel Grid.Column="0" Grid.Row="0">
+                            <Label Content="Логин:" x:Name="LabelLogin" />
+                            <Label Content="Пароль:" x:Name="LabelPass"/>
                         
-                    </StackPanel>
-                    <StackPanel Grid.Column="1" HorizontalAlignment="Left" >
-                        <TextBox x:Name="TxtBoxLogin" Width="200" Margin="0 3 0 10" ToolTip="Введите логин"/>
-                        <PasswordBox x:Name="PassPassword" Width="200" ToolTip="Введите пароль"/>
-                    </StackPanel>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" HorizontalAlignment="Left" >
+                            <TextBox x:Name="TxtBoxLogin" Width="200" Margin="0 3 0 10" ToolTip="Введите логин"/>
+                            <PasswordBox x:Name="PassPassword" Width="200" ToolTip="Введите пароль"/>
+                        </StackPanel>
                     </StackPanel>
 
                     <StackPanel x:Name="StackCaptcha" Visibility="Collapsed">
@@ -47,7 +47,7 @@
                             </TextBlock.RenderTransform>
                         </TextBlock>
 
-                        <TextBox x:Name="TxtBoxCaptchaInput" Width="200" Height="30" Margin="10"/>
+                        <TextBox x:Name="TxtBoxCaptchaInput" Width="200" Height="30" Margin="10" CommandManager.PreviewExecuted="TxtBoxCaptchaInput_PreviewExecuted"/>
                         <Button x:Name="BtnSubmitCaptcha" Content="Подтвердить" Click="BtnSubmitCaptcha_Click"/>
                     </StackPanel>
 
