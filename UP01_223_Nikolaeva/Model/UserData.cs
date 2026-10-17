@@ -8,6 +8,6 @@ namespace UP01_223_Nikolaeva.Model
 {
     public static class UserData
     {
-        public static User CurrentUser { get; set; }
+        public static User CurrentUser { get; set; } = Core.context.User.First(a => a.ID == 2);
     }
 }

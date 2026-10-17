@@ -10,9 +10,21 @@
     </Style>
 
     <Style TargetType="Button">
-        <Setter Property="Background" Value="#256569"/>
-        <Setter Property="Foreground" Value="White"/>
-        <Setter Property=""/>
+        <Setter Property="Background" Value="#FFFF9B9B"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Height" Value="35"/>
+        <Setter Property="BorderThickness" Value="0"/>
     </Style>
-    
+    <Style TargetType="Grid">
+        <Setter Property="Background" Value="#FFFFD8D8"/>
+    </Style>
+
+    <Style TargetType="Page">
+        <Setter Property="Background" Value="#FFFFD8D8"/>
+    </Style>
+
+    <Style TargetType="ListBox">
+        <Setter Property="Background" Value="#FFFFD8D8"/>
+    </Style>
+
 </ResourceDictionary>

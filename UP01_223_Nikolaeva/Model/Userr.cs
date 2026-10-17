@@ -9,6 +9,6 @@ namespace UP01_223_Nikolaeva.Model
 {
     public partial class User
     {
-        public Visibility VisIsAdmin => UserRole.Name == "Администратор" ? Visibility.Visible : Visibility.Collapsed;
+        public Visibility VisIsAdmin => RoleID == 2 ? Visibility.Visible : Visibility.Collapsed;
     }
 }

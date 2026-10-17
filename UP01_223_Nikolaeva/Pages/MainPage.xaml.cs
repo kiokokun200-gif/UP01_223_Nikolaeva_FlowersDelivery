@@ -28,6 +28,7 @@ namespace UP01_223_Nikolaeva.Pages
         private string search = "";
         private string selectedSort;
         private string selectefFiltr;
+        private bool isBlackThemeNow = false;
         public MainPage()
         {
             InitializeComponent();
@@ -61,10 +62,13 @@ namespace UP01_223_Nikolaeva.Pages
             if (TxtBoxSearch.Text.Length > 0)
             {
                 SearchPlaceHolder.Visibility = Visibility.Collapsed;
+
             }
             else { SearchPlaceHolder.Visibility = Visibility.Visible; }
 
             search = TxtBoxSearch.Text;
+            SearchSortFilrt();
+            
 
         }
 
@@ -75,6 +79,7 @@ namespace UP01_223_Nikolaeva.Pages
 
         private void ComboBoxSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (ComboBoxSort.SelectedItem == null) return;
             selectedSort = ComboBoxSort.SelectedItem.ToString();
             SearchSortFilrt();
         }
@@ -84,7 +89,7 @@ namespace UP01_223_Nikolaeva.Pages
             var result = goods;
             if (search.Length > 0)
             {
-                result = result.Where(s => s.Name.Contains(search)).ToList();
+                result = result.Where(s => s.Name.ToLower().Contains(search.ToLower())).ToList();
             }
             if(selectefFiltr != "Все")
             {
@@ -93,13 +98,13 @@ namespace UP01_223_Nikolaeva.Pages
             if (selectedSort == "Сначала лучшие")
             {
                 //фильтрация по рейтингу, добавить
-                result.OrderByDescending(s => s.Rating).ToList();
+                result = result.OrderByDescending(s => s.Rating).ToList();
             }
             else if (selectedSort == "Сначала дороже")
             {
-                result.OrderByDescending(u=> u.Price);
+                result = result.OrderByDescending(u=> u.Price).ToList();
             }
-            else result.OrderBy(u=> u.Price);
+            else result = result.OrderBy(u=> u.Price).ToList();
 
             ListBoxGoods.ItemsSource = result;
 
@@ -108,7 +113,9 @@ namespace UP01_223_Nikolaeva.Pages
 
         private void ComboBoxFiltr_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (ComboBoxFiltr.SelectedItem == null) return;
             selectefFiltr = ComboBoxFiltr.SelectedItem.ToString();
+            SearchSortFilrt();
         }
 
         
@@ -145,6 +152,25 @@ namespace UP01_223_Nikolaeva.Pages
             wind.ShowDialog();
             LoadGoods();
 
+        }
+
+        private void BtnChangeTheme_Click(object sender, RoutedEventArgs e)
+        {
+            var currentDictionaries = Application.Current.Resources.MergedDictionaries;
+            currentDictionaries.Clear();
+
+            string themePath = "/Themes/DictionaryStyleBlack.xaml";
+
+            if (isBlackThemeNow)
+            {
+                themePath = "/Themes/DictionaryStyle.xaml";
+            }
+            isBlackThemeNow = !isBlackThemeNow;
+
+            currentDictionaries.Add(new ResourceDictionary
+            {
+                Source = new Uri(themePath, UriKind.Relative)
+            });
         }
     }
 }

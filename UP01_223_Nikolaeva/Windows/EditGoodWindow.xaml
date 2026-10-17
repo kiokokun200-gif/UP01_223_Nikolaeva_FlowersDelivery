@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UP01_223_Nikolaeva.Windows"
         mc:Ignorable="d"
-        Title="EditGoodWindow" Height="450" Width="800">
+        Title="EditGoodWindow" Height="350" Width="600">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
@@ -14,7 +14,7 @@
             
         </Grid.ColumnDefinitions>
 
-        <Image Grid.Column="0" Source="{Binding Image}" Width="300"/>
+        <Image Grid.Column="0" Source="{Binding Image}" Width="250"/>
 
 
         <StackPanel Grid.Column="1">

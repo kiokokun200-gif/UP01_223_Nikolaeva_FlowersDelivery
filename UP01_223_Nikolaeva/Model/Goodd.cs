@@ -18,7 +18,7 @@ namespace UP01_223_Nikolaeva.Model
             set { }
         }
 
-        public Visibility VisIsAdmin => UserData.CurrentUser.UserRole.Name == "Администратор" ? Visibility.Visible : Visibility.Collapsed;
+        public Visibility VisIsAdmin => UserData.CurrentUser.RoleID == 2 ? Visibility.Visible : Visibility.Collapsed;
 
 
 

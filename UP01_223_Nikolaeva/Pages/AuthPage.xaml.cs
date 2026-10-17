@@ -174,6 +174,7 @@ namespace UP01_223_Nikolaeva.Pages
             if (hide)
             {
                 StackLogin.Visibility = Visibility.Collapsed;
+                BtnLogin.Visibility = Visibility.Collapsed;
                 StackCaptcha.Visibility = Visibility.Visible;
                 TxtBoxLogin.Text = string.Empty;
                 PassPassword.Password = string.Empty;
@@ -182,6 +183,8 @@ namespace UP01_223_Nikolaeva.Pages
             else
             {
                 StackCaptcha.Visibility = Visibility.Collapsed;
+                BtnLogin.Visibility = Visibility.Visible;
+
                 StackLogin.Visibility = Visibility.Visible;
             }
         }
