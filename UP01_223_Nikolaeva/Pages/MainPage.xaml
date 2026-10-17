@@ -14,7 +14,12 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="0">
             <TextBlock Text="⌕" FontSize="20" Margin="5 10"/>
             <Grid>
                 <TextBox x:Name="TxtBoxSearch" Style="{StaticResource TextBoxxx}" Margin="10 10" TextChanged="TxtBoxSearch_TextChanged"/>
@@ -25,7 +30,16 @@
             <ComboBox x:Name="ComboBoxFiltr" Margin="10 0" Width="150" Height="30" SelectedIndex="0" SelectionChanged="ComboBoxFiltr_SelectionChanged"/>
         </StackPanel>
 
-        <ListBox Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}" x:Name="ListBoxGoods">
+        <StackPanel Grid.Column="1" Orientation="Horizontal">
+            <Button Content="Сменить тему" />
+            <Button x:Name="BtnAccount" Background="Transparent" BorderThickness="0" Margin="10">
+                <Button.Content>
+                    <Image Source="/res/account.png" Width="30"/>
+                </Button.Content>
+            </Button>
+        </StackPanel>
+
+        <ListBox Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}" x:Name="ListBoxGoods" Grid.ColumnSpan="2">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
@@ -37,8 +51,8 @@
                             </Grid.ColumnDefinitions>
                             <Image Grid.ColumnSpan="2" Source="{Binding Image}" Width="100" Height="100"/>
 
-                            <Button Content="✎" Width="20" Height="20" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FFBDFFA0" Visibility="{Binding VisIsAdmin}"/>
-                            <Button Content="🗑️" Width="20" Height="20" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#FFF3657B" Visibility="{Binding VisIsAdmin}"/>
+                            <Button x:Name="BtnEditGood" Content="✎" Width="20" Height="20" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FFBDFFA0" Visibility="{Binding VisIsAdmin}" Click="BtnEditGood_Click"/>
+                            <Button x:Name="BtnDeleteGood" Content="🗑️" Width="20" Height="20" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#FFF3657B" Visibility="{Binding VisIsAdmin}" Click="BtnDeleteGood_Click"/>
 
                         </Grid>
                         <TextBlock Text="{Binding Name}"/>
@@ -60,5 +74,8 @@
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
         </ListBox>
+
+        <Button x:Name="BtnAddGood" Content="➕" Background="Transparent" Grid.Row="1" HorizontalAlignment="Right" FontSize="28" BorderThickness="0" 
+                Grid.ColumnSpan="2" VerticalAlignment="Bottom" Margin="20" Width="40" Height="40" Visibility="{Binding VisIsAdmin}" Click="BtnAddGood_Click"/>
     </Grid>
 </Page>

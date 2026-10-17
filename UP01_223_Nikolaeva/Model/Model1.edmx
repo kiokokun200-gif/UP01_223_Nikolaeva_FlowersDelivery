@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище KursovayaModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище KursovayaModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AvailabilityAddress">
           <Key>
             <PropertyRef Name="ID" />
@@ -33,6 +33,7 @@
           <Property Name="Price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="CategoryID" Type="int" Nullable="false" />
           <Property Name="ImagePath" Type="nvarchar" MaxLength="200" />
+          <Property Name="Rating" Type="decimal" Precision="3" Scale="2" />
         </EntityType>
         <EntityType Name="GoodAvailableAddress">
           <Key>
@@ -371,8 +372,7 @@
             <End Role="User" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="KursovayaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -412,6 +412,7 @@
           <NavigationProperty Name="GoodAvailableAddress" Relationship="Self.FK_GoodAvailableAddress_Good" FromRole="Good" ToRole="GoodAvailableAddress" />
           <NavigationProperty Name="OrderGood" Relationship="Self.FK_OrderGood_Good" FromRole="Good" ToRole="OrderGood" />
           <NavigationProperty Name="Review" Relationship="Self.FK_Review_Good" FromRole="Good" ToRole="Review" />
+          <Property Name="Rating" Type="Decimal" Precision="3" Scale="2" />
         </EntityType>
         <EntityType Name="GoodAvailableAddress">
           <Key>
@@ -802,6 +803,7 @@
           <EntitySetMapping Name="Good">
             <EntityTypeMapping TypeName="KursovayaModel.Good">
               <MappingFragment StoreEntitySet="Good">
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Price" ColumnName="Price" />

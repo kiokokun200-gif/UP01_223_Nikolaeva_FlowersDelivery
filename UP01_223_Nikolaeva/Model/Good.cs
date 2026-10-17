@@ -27,6 +27,7 @@ namespace UP01_223_Nikolaeva.Model
         public decimal Price { get; set; }
         public int CategoryID { get; set; }
         public string ImagePath { get; set; }
+        public Nullable<decimal> Rating { get; set; }
     
         public virtual GoodCategory GoodCategory { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

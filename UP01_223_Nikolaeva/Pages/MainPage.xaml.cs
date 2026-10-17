@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using UP01_223_Nikolaeva.Model;
+using UP01_223_Nikolaeva.Windows;
 
 namespace UP01_223_Nikolaeva.Pages
 {
@@ -24,22 +25,26 @@ namespace UP01_223_Nikolaeva.Pages
         private List<Good> goods;
         private List<string> sort = new List<string> ();
         private List<string> goodCategories;
-        private string search;
+        private string search = "";
         private string selectedSort;
         private string selectefFiltr;
         public MainPage()
         {
             InitializeComponent();
-            
+            LoadGoods();
             LoadData();
+            BtnAddGood.DataContext = goods;
             
             
         }
-
-        private void LoadData()
+        private void LoadGoods()
         {
             goods = Core.context.Good.ToList();
             ListBoxGoods.ItemsSource = goods;
+        }
+        private void LoadData()
+        {
+            
             sort.Add("Сначала лучшие");
             sort.Add("Сначала дешевле");
             sort.Add("Сначала дороже");
@@ -88,6 +93,7 @@ namespace UP01_223_Nikolaeva.Pages
             if (selectedSort == "Сначала лучшие")
             {
                 //фильтрация по рейтингу, добавить
+                result.OrderByDescending(s => s.Rating).ToList();
             }
             else if (selectedSort == "Сначала дороже")
             {
@@ -103,6 +109,42 @@ namespace UP01_223_Nikolaeva.Pages
         private void ComboBoxFiltr_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             selectefFiltr = ComboBoxFiltr.SelectedItem.ToString();
+        }
+
+        
+
+        private void BtnDeleteGood_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn = (Button)sender;
+            Good good = (Good)btn.DataContext;
+            MessageBoxResult result = MessageBox.Show($"Хотите удалить товар {good.Name}", "Удаление продукта", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes) { 
+                Core.context.Good.Remove(good);
+                Core.context.SaveChanges();
+                MessageBox.Show("Товар удален");
+
+                LoadGoods();
+            }
+            else return;
+        }
+
+        private void BtnEditGood_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn = (Button)sender;
+            Good good = (Good)btn.DataContext;
+
+            var wind = new EditGoodWindow(good);
+            wind.ShowDialog();
+            LoadGoods();
+
+        }
+
+        private void BtnAddGood_Click(object sender, RoutedEventArgs e)
+        {
+            var wind = new AddGoodWindow();
+            wind.ShowDialog();
+            LoadGoods();
+
         }
     }
 }
