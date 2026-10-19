@@ -33,6 +33,6 @@
             <ComboBox x:Name="ComboBoxCategory" Width="200" Margin="0 5" SelectedIndex="0"/>
         </StackPanel>
 
-        <Button x:Name="BtnAddGood" Content="Добавить" HorizontalAlignment="Center" FontFamily="Times New Roman" Grid.Row="1" Grid.ColumnSpan="2" Height="30" VerticalAlignment="Top" Margin="10" Click="BtnAddGood_Click"/>
+        <Button x:Name="BtnAddGood" Content="Добавить" HorizontalAlignment="Center" Grid.Row="1" Grid.ColumnSpan="2" Height="30" VerticalAlignment="Top" Margin="10" Click="BtnAddGood_Click"/>
     </Grid>
 </Window>
