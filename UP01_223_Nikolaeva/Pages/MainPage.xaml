@@ -32,7 +32,7 @@
 
         <StackPanel Grid.Column="1" Orientation="Horizontal">
             <Button Content="Сменить тему" x:Name="BtnChangeTheme" Click="BtnChangeTheme_Click" />
-            <Button x:Name="BtnAccount" Background="Transparent" BorderThickness="0" Margin="10">
+            <Button x:Name="BtnAccount" Background="Transparent" BorderThickness="0" Margin="10" Click="BtnAccount_Click">
                 <Button.Content>
                     <Image Source="/res/account.png" Width="30"/>
                 </Button.Content>

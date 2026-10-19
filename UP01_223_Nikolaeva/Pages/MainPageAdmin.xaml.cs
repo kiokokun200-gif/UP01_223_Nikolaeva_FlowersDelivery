@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using UP01_223_Nikolaeva.Model;
+using UP01_223_Nikolaeva.Windows;
 
 namespace UP01_223_Nikolaeva.Pages
 {

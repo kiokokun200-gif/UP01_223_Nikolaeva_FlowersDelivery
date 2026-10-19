@@ -172,5 +172,10 @@ namespace UP01_223_Nikolaeva.Pages
                 Source = new Uri(themePath, UriKind.Relative)
             });
         }
+
+        private void BtnAccount_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate( new AccountPage() );
+        }
     }
 }

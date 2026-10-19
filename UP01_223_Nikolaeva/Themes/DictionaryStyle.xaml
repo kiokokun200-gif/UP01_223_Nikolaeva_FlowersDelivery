@@ -12,7 +12,7 @@
     <Style TargetType="Button">
         <Setter Property="Background" Value="#FFFF9B9B"/>
         <Setter Property="Foreground" Value="Black"/>
-        <Setter Property="Height" Value="35"/>
+        <Setter Property="Height" Value="30"/>
         <Setter Property="BorderThickness" Value="0"/>
     </Style>
     <Style TargetType="Grid">

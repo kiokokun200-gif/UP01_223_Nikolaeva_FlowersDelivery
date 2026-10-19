@@ -28,21 +28,10 @@ namespace UP01_223_Nikolaeva.Pages
         {
             InitializeComponent();
         }
-        public static string GetHash(String password)
-        {
-            using (var hash = SHA1.Create())
-            {
-                return
-                string.Concat(hash.ComputeHash(Encoding.UTF8.GetBytes(password)).Select(x =>
-                x.ToString("X2")));
-            }
-        }
 
         private void BtnRegister_Click(object sender, RoutedEventArgs e)
         {
-            
-
-
+       
             string name = TxtBoxRegName.Text;
             string login = TxtBoxRegLogin.Text;
             string phone = TxtBoxRegPhone.Text;
@@ -54,7 +43,7 @@ namespace UP01_223_Nikolaeva.Pages
                 return;
             }
             string mess;
-            if(!CheckPassword(password, out mess))
+            if(!PasswordChecker.CheckPassword(password, out mess))
             {
                 MessageBox.Show(mess);
                 return;
@@ -73,47 +62,10 @@ namespace UP01_223_Nikolaeva.Pages
             }
         }
 
-        private bool CheckPassword(string password, out string message)
-        {
-            if(password.Length < 6)
-            {
-                message = "Пароль слишком короткий, должно быть минимум 6 символов!";
-                return false;
-            }
-            bool containDigit = false;
-            bool english = true;
-            for (int i = 0; i < password.Length; i++) {
-                if (char.IsDigit(password[i]))
-                {
-                    containDigit = true;
-
-                }
-                else if (!((password[i] >= 'A' && password[i] <= 'Z') || (password[i] >= 'a' && password[i] <= 'z' )))
-                {
-                    english = false;
-                }
-
-            }
-            if (!containDigit) {
-                message = "Пароль должен содержать цифру";
-                return false;
-            }
-
-            else if(!english)
-            {
-                message = "Пароль должен состоять из английских букв";
-                return false;
-            }
-            else
-            {
-                message = "";
-                return true;
-            }
-        }
-
+       
         private bool Login(string login, string password)
         {
-            string hashPass = GetHash(password);
+            string hashPass = PasswordHash.GetHash(password);
             var user = Core.context.User.FirstOrDefault(u => u.Email == login && u.Password == hashPass);
             if (user == null) return false;
             else
@@ -133,7 +85,7 @@ namespace UP01_223_Nikolaeva.Pages
                 MessageBox.Show("Заполните все поля");
                 return;
             }
-            string hashedPassword = GetHash(password);
+            string hashedPassword = PasswordHash.GetHash(password);
 
             if (Login(login, password))
             {
@@ -160,7 +112,7 @@ namespace UP01_223_Nikolaeva.Pages
                 Name = name,
                 Email = login,
                 Phone = phone,
-                Password = GetHash(password),
+                Password = PasswordHash.GetHash(password),
                 RoleID = 1,
 
             };
