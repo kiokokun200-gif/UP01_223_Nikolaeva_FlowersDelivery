@@ -87,6 +87,9 @@
     <Compile Include="Windows\EditGoodWindow.xaml.cs">
       <DependentUpon>EditGoodWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\EditOrderPage.xaml.cs">
+      <DependentUpon>EditOrderPage.xaml</DependentUpon>
+    </Compile>
     <Page Include="Pages\AccountPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -137,6 +140,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\EditGoodWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\EditOrderPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

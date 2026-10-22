@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using UP01_223_Nikolaeva.Model;
+using UP01_223_Nikolaeva.Windows;
 
 namespace UP01_223_Nikolaeva.Pages
 {
@@ -68,12 +69,25 @@ namespace UP01_223_Nikolaeva.Pages
         }
         private void SetupGoods()
         {
-            TxtBoxSearch.Text = "";
-            SearchPlaceHolder.Text = "Найти товар";
-
             if (_goods == null) LoadGoods();
+
+            
+            ComboBoxSort.SelectedIndex = -1;
+            ComboBoxFiltr.SelectedIndex = -1;
+
             ComboBoxSort.ItemsSource = _goodsSort;
             ComboBoxFiltr.ItemsSource = _goodsCategories;
+
+            ComboBoxFiltr.SelectedIndex = 0; 
+            ComboBoxSort.SelectedIndex = 0; 
+
+            selectedSort = ComboBoxSort.SelectedItem?.ToString();
+            selectefFiltr = ComboBoxFiltr.SelectedItem?.ToString();
+
+            TxtBoxSearch.Text = "";
+            SearchPlaceHolder.Text = "Найти товар";
+            SearchPlaceHolder.Visibility = Visibility.Visible;
+
             DataGridGoods.ItemsSource = _goods;
 
         }
@@ -153,6 +167,33 @@ namespace UP01_223_Nikolaeva.Pages
 
         private void SearchSortFilterGoods()
         {
+            var result = _goods;
+            if (search.Length > 0)
+            {
+                result = result.Where(s => s.Name.ToLower().Contains(search.ToLower())).ToList();
+            }
+            if (!string.IsNullOrEmpty(selectefFiltr) && selectefFiltr != "Все")
+            {
+                result = result.Where(s => s.GoodCategory.Name == selectefFiltr).ToList();
+
+            }
+
+            
+            if (selectedSort == "По названию")
+            {
+                result = result.OrderBy(s => s.Name).ToList();
+            }
+            else if (selectedSort == "Сначала дешевле")
+            {
+                result = result.OrderBy(u => u.Price).ToList();
+            }
+            else if (selectedSort == "Сначала дороже")
+            {
+                result = result.OrderByDescending(u => u.Price).ToList();
+            }
+            else result = result.OrderByDescending(u => u.Rating).ToList();
+
+            DataGridGoods.ItemsSource = result.ToList();
 
         }
         private void SearchSortFilterUsers()
@@ -161,17 +202,46 @@ namespace UP01_223_Nikolaeva.Pages
         }
         private void SearchSortFilterOrders()
         {
+            var result = _orders;
+            if (search.Length > 0)
+            {
+                result = result.Where(s => s.User1.Name.ToLower().Contains(search.ToLower())).ToList();
+            }
+            if (!string.IsNullOrEmpty(selectefFiltr) && selectefFiltr != "Все")
+            {
+                result = result.Where(s => s.OrderStatus.Name == selectefFiltr).ToList();
 
+            }
+            if (selectedSort == "По дате")
+            {
+                result = result.OrderBy(s => s.Date).ToList();
+            }
+            
+            else result = result.OrderByDescending(u => u.TotalPrice).ToList();
+
+            DataGridOrders.ItemsSource = result;
         }
 
         private void SetupOrders()
         {
-            TxtBoxSearch.Text = "";
-            SearchPlaceHolder.Text = "Найти заказ по имени клиента";
-
             if (_orders == null) LoadOrders();
+
+            ComboBoxSort.SelectedIndex = -1;
+            ComboBoxFiltr.SelectedIndex = -1;
+
             ComboBoxSort.ItemsSource = _orderSort;
             ComboBoxFiltr.ItemsSource = _orderStatuses;
+
+            ComboBoxFiltr.SelectedIndex = 0; 
+            ComboBoxSort.SelectedIndex = 0;  
+
+            selectedSort = ComboBoxSort.SelectedItem?.ToString();
+            selectefFiltr = ComboBoxFiltr.SelectedItem?.ToString();
+
+            TxtBoxSearch.Text = "";
+            SearchPlaceHolder.Text = "Найти заказ по имени клиента";
+            SearchPlaceHolder.Visibility = Visibility.Visible;
+
             DataGridOrders.ItemsSource = _orders;
         }
         private void TabControlTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -200,11 +270,28 @@ namespace UP01_223_Nikolaeva.Pages
 
         private void BtnEditGood_Click(object sender, RoutedEventArgs e)
         {
+            Button btn = (Button)sender;
+            Good good = (Good)btn.DataContext;
+            var wind = new EditGoodWindow(good);
+            wind.ShowDialog();
 
         }
 
         private void BtnDeleteGood_Click(object sender, RoutedEventArgs e)
         {
+            Button btn = (Button)sender;
+            Good good = (Good)btn.DataContext;
+            MessageBoxResult res = MessageBox.Show($"Хотите удалить {good.Name}?", "Подтверждение", MessageBoxButton.YesNo);
+            if (res == MessageBoxResult.Yes)
+            {
+                Core.context.Good.Remove(good);
+                Core.context.SaveChanges();
+                LoadGoods();
+                SearchSortFilterGoods();
+                MessageBox.Show("Товар удален");
+
+            }
+
 
         }
 

@@ -22,7 +22,7 @@
         <StackPanel Orientation="Horizontal" Grid.Column="0">
             <TextBlock Text="⌕" FontSize="20" Margin="10 10"/>
             <Grid>
-                <TextBox x:Name="TxtBoxSearch" Width="200" Margin="10 10" TextChanged="TxtBoxSearch_TextChanged"/>
+                <TextBox x:Name="TxtBoxSearch" Width="200" Margin="10 10" TextChanged="TxtBoxSearch_TextChanged" Padding="3"/>
                 <TextBlock x:Name="SearchPlaceHolder" Margin="20 16" Foreground="Gray" MouseLeftButtonUp="SearchPlaceHolder_MouseLeftButtonUp"/>
 
             </Grid>
@@ -44,8 +44,8 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
-                                        <Button x:Name="BtnEditGood" Content="✏️" Click="BtnEditGood_Click" Margin="3"/>
-                                        <Button x:Name="BtnDeleteGood" Content="🗑️" Click="BtnDeleteGood_Click" Margin="3"/>
+                                        <Button x:Name="BtnEditGood" Content="✏️" Click="BtnEditGood_Click" Margin="3" Background="Transparent"/>
+                                        <Button x:Name="BtnDeleteGood" Content="🗑️" Click="BtnDeleteGood_Click" Margin="3" Background="Transparent"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
@@ -57,8 +57,8 @@
                 <DataGrid x:Name="DataGridOrders" AutoGenerateColumns="False" IsReadOnly="True">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="auto"/>
-                        <DataGridTextColumn Header="Дата заказа" Binding="{Binding Date}" Width="auto"/>
-                        <DataGridTextColumn Header="Дата доставки" Binding="{Binding DeliveryDate}" Width="auto"/>
+                        <DataGridTextColumn Header="Дата заказа" Binding="{Binding Date, StringFormat={}{0:dd.MM.yyyy}}" Width="auto"/>
+                        <DataGridTextColumn Header="Дата доставки" Binding="{Binding DeliveryDate, StringFormat={}{0:dd.MM.yyyy}}" Width="auto"/>
                         <DataGridTextColumn Header="Адрес доставки" Binding="{Binding DeliveryAddress.FullAddress}" Width="auto"/>
                         <DataGridTextColumn Header="Курьер" Binding="{Binding User.Name}" Width="auto"/>
                         <DataGridTextColumn Header="Клиент" Binding="{Binding User1.Name}" Width="auto"/>
@@ -69,8 +69,8 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
-                                        <Button x:Name="BtnEditOrder" Content="✏️" Click="BtnEditOrder_Click" Margin="3"/>
-                                        <Button x:Name="BtnDeleteOrder" Content="🗑️" Click="BtnDeleteOrder_Click" Margin="3"/>
+                                        <Button x:Name="BtnEditOrder" Content="✏️" Click="BtnEditOrder_Click" Margin="3" Background="Transparent"/>
+                                        <Button x:Name="BtnDeleteOrder" Content="🗑️" Click="BtnDeleteOrder_Click" Margin="3" Background="Transparent"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
