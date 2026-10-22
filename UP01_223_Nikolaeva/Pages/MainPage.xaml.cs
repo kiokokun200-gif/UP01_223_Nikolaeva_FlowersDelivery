@@ -34,7 +34,7 @@ namespace UP01_223_Nikolaeva.Pages
             InitializeComponent();
             LoadGoods();
             LoadData();
-            BtnAddGood.DataContext = goods;
+            //BtnAddGood.DataContext = goods;
             
             
         }

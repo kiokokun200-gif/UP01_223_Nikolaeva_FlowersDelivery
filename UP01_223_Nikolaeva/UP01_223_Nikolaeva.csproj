@@ -66,11 +66,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\DeliveryAddresss.cs" />
     <Compile Include="Pages\AccountPage.xaml.cs">
       <DependentUpon>AccountPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\MainPageAdmin.xaml.cs">
       <DependentUpon>MainPageAdmin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PageAdmin.xaml.cs">
+      <DependentUpon>PageAdmin.xaml</DependentUpon>
     </Compile>
     <Compile Include="PasswordChecker.cs" />
     <Compile Include="PasswordHash.cs" />
@@ -88,6 +92,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\MainPageAdmin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PageAdmin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
