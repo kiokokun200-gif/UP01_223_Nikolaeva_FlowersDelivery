@@ -22,6 +22,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Column="0" Grid.Row="0" Text="Дата заказа: " Margin="0 5 10 5"/>
@@ -41,13 +42,13 @@
         <TextBox Grid.Column="1" Grid.Row="4" Width="200" Text="{Binding User1.Login}" HorizontalAlignment="Left" IsReadOnly="True" Margin="0 5 0 5"/>
 
         <TextBlock Grid.Column="0" Grid.Row="5" Text="Курьер: " Margin="0 5 10 5"/>
-        <ComboBox Grid.Column="1" x:Name="ComboBoxCourier" Grid.Row="5" Width="200" Text="{Binding User.Name}" HorizontalAlignment="Left" Margin="0 5 0 5"/>
+        <ComboBox Grid.Column="1" x:Name="ComboBoxCourier" Grid.Row="5" Width="200" SelectedValue="{Binding CourierID, Mode=TwoWay}" SelectedValuePath="ID" DisplayMemberPath="Name" HorizontalAlignment="Left" Margin="0 5 0 5"/>
 
         <TextBlock Grid.Column="0" Grid.Row="6" Text="Флорист: " Margin="0 5 10 5"/>
-        <ComboBox Grid.Column="1" x:Name="ComboBoxFlorist" Grid.Row="6" Width="200" Text="{Binding User2.Name}" HorizontalAlignment="Left"  Margin="0 5 0 5"/>
+        <ComboBox Grid.Column="1" x:Name="ComboBoxFlorist" Grid.Row="6" Width="200" SelectedValue="{Binding FloristID, Mode=TwoWay}" SelectedValuePath="ID" DisplayMemberPath="Name" HorizontalAlignment="Left"  Margin="0 5 0 5"/>
 
         <TextBlock Grid.Column="0" Grid.Row="7" Text="Статус заказа: " Margin="0 5 10 5"/>
-        <ComboBox Grid.Column="1" x:Name="ComboBoxStatus" Grid.Row="7" Width="200" Text="{Binding OrderStatus.Name}" HorizontalAlignment="Left"  Margin="0 5 0 5"/>
+        <ComboBox Grid.Column="1" x:Name="ComboBoxStatus" Grid.Row="7" Width="200" SelectedValue="{Binding StatusID, Mode=TwoWay}" SelectedValuePath="ID" DisplayMemberPath="Name" HorizontalAlignment="Left"  Margin="0 5 0 5"/>
 
     </Grid>
 </Page>

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using UP01_223_Nikolaeva.Model;
 
 namespace UP01_223_Nikolaeva.Windows
 {
@@ -20,9 +21,25 @@ namespace UP01_223_Nikolaeva.Windows
     /// </summary>
     public partial class EditOrderPage : Page
     {
-        public EditOrderPage()
+        private Order _order;
+        private List<User> _couriers;
+        private List<User> _florists;
+        private List<string> _couriersNames;
+        private List<string> _floristsNames;
+        public EditOrderPage(Order order)
         {
             InitializeComponent();
-        }
+            _order = order;
+            DataContext = _order;
+            _couriers = Core.context.User.Where(u => u.RoleID == 3).ToList(); //проверить роли
+            _florists = Core.context.User.Where(u => u.RoleID == 4).ToList();
+            _couriersNames = _couriers.Select(us => us.Name).ToList();
+            _floristsNames = _florists.Select(us => us.Name).ToList();
+            
+            ComboBoxCourier.ItemsSource = _couriers;
+            ComboBoxFlorist.ItemsSource = _florists;
+            ComboBoxCourier.SelectedItem = _couriers.FirstOrDefault() == _order.;
+         }
+
     }
 }
