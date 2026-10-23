@@ -7,6 +7,8 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Source="/Pages/PageAdmin.xaml"/>
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Source="/Pages/AuthPage.xaml"/>
+        <Button x:Name="BtnBack" Content="Назад" Width="70" Margin="10" Background="#FFFF7B8E" Foreground="White" Height="30" FontSize="23" VerticalAlignment="Bottom" 
+                 HorizontalAlignment="Left"  Click="BtnBack_Click"/>
     </Grid>
 </Window>

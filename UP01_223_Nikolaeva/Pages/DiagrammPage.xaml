@@ -16,11 +16,13 @@
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="0" Margin="15">
-            <TextBlock Text="Тип диаграммы: " VerticalAlignment="Center" FontSize="14" Margin="0,0,10,0"/>
+            
+            <TextBlock Text="Тип диаграммы: "  VerticalAlignment="Center" FontSize="14" Margin="0,0,10,0"  />
             <ComboBox x:Name="CmbDiagram" Width="180" Height="30" VerticalContentAlignment="Center" SelectionChanged="CmbDiagram_SelectionChanged"/>
 
             <Button x:Name="BtnExcel" Content="Выгрузить в Excel" Width="140" Height="30" Margin="30,0,10,0" Click="BtnExcel_Click"/>
-            <Button x:Name="BtnWord" Content="Выгрузить в Word/pdf" Width="140" Height="30" Click="BtnWord_Click"/>
+            <Button x:Name="BtnWord" Content="Выгрузить в Word" Width="140" Height="30" Click="BtnWord_Click" Margin="0 0 10 0"/>
+            <Button x:Name="BtnPdf" Content="Выгрузить в Pdf" Width="140" Height="30" Click="BtnPdf_Click" />
         </StackPanel>
         <WindowsFormsHost Grid.Row="1" Margin="20" >
             <charts:Chart x:Name="ChartOrders">

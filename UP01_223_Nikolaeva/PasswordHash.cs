@@ -14,8 +14,7 @@ namespace UP01_223_Nikolaeva
             using (var hash = SHA1.Create())
             {
                 return
-                string.Concat(hash.ComputeHash(Encoding.UTF8.GetBytes(password)).Select(x =>
-                x.ToString("X2")));
+                string.Concat(hash.ComputeHash(Encoding.UTF8.GetBytes(password)).Select(x =>x.ToString("X2")));
             }
         }
     }

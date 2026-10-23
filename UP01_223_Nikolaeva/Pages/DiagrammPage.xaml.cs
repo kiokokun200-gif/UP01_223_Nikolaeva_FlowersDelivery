@@ -62,7 +62,6 @@ namespace UP01_223_Nikolaeva.Pages
         {
             var allStatuses = Core.context.OrderStatus.ToList();
 
-            // Создаем главный заголовок отчета
             Word.Paragraph mainTitle = doc.Paragraphs.Add();
             mainTitle.Range.Text = "Отчет по заказам цветочного магазина";
             mainTitle.set_Style("Заголовок 1");
@@ -85,7 +84,6 @@ namespace UP01_223_Nikolaeva.Pages
                     continue;
                 }
 
-                // Строим таблицу
                 Word.Table ordersTable = doc.Tables.Add(doc.Paragraphs.Add().Range, statusOrders.Count + 1, 4);
                 ordersTable.Borders.InsideLineStyle = Word.WdLineStyle.wdLineStyleSingle;
                 ordersTable.Borders.OutsideLineStyle = Word.WdLineStyle.wdLineStyleSingle;
@@ -94,7 +92,7 @@ namespace UP01_223_Nikolaeva.Pages
                 ordersTable.Cell(1, 2).Range.Text = "Дата создания";
                 ordersTable.Cell(1, 3).Range.Text = "Дата доставки";
                 ordersTable.Cell(1, 4).Range.Text = "Итоговая стоимость";
-                ordersTable.Rows.Range.Font.Bold = 1;
+                ordersTable.Rows[1].Range.Font.Bold = 1;
 
                 for (int i = 0; i < statusOrders.Count; i++)
                 {
@@ -105,8 +103,6 @@ namespace UP01_223_Nikolaeva.Pages
                 }
 
                 doc.Paragraphs.Add().Range.InsertParagraphAfter();
-
-                // Поиск самого дорогого заказа (выделение цветом)
                 var maxOrder = statusOrders.OrderByDescending(o => o.TotalPrice).FirstOrDefault();
                 if (maxOrder != null)
                 {
@@ -133,20 +129,20 @@ namespace UP01_223_Nikolaeva.Pages
             string filePath = sfd.FileName;
 
             var wordApp = new Word.Application();
-            wordApp.Visible = false; // Делаем в фоне на время генерации
+            wordApp.Visible = false;
             Word.Document doc = wordApp.Documents.Add();
 
             try
             {
-                CreateWordReport(doc); // Вызываем общую функцию заполнения
+                CreateWordReport(doc); 
                 doc.SaveAs2(filePath);
 
-                MessageBox.Show("Файл Word успешно сохранен!", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
-                wordApp.Visible = true; // Открываем сохраненный файл пользователю
+                MessageBox.Show("Файл Word успешно сохранен!");
+                wordApp.Visible = true; 
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ошибка сохранения: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Ошибка сохранения: {ex.Message}");
                 object saveChanges = Word.WdSaveOptions.wdDoNotSaveChanges;
                 doc.Close(ref saveChanges);
                 wordApp.Quit(ref saveChanges);
@@ -163,18 +159,17 @@ namespace UP01_223_Nikolaeva.Pages
             string filePath = sfd.FileName;
 
             var wordApp = new Word.Application();
-            wordApp.Visible = false; // Полностью скрытый процесс
+            wordApp.Visible = false; 
             Word.Document doc = wordApp.Documents.Add();
 
             try
             {
-                CreateWordReport(doc); // Вызываем ТУ ЖЕ функцию заполнения
+                CreateWordReport(doc);
                 doc.SaveAs2(filePath, Word.WdExportFormat.wdExportFormatPDF);
 
                 MessageBox.Show("Файл PDF успешно сохранен!", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                // Автоматически открываем созданный PDF на экране
-                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(filePath) { UseShellExecute = true });
+                //System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(filePath) { UseShellExecute = true });
             }
             catch (Exception ex)
             {
@@ -182,7 +177,6 @@ namespace UP01_223_Nikolaeva.Pages
             }
             finally
             {
-                // Закрываем фоновый ворд без сохранения исходного .docx
                 object saveChanges = Word.WdSaveOptions.wdDoNotSaveChanges;
                 doc.Close(ref saveChanges);
                 wordApp.Quit(ref saveChanges);
@@ -246,7 +240,7 @@ namespace UP01_223_Nikolaeva.Pages
                 }
                 workbook.SaveAs(filePath);
                 MessageBox.Show("Файл Excel успешно сохранен!", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
-                excelApp.Visible = true; // Показываем готовую таблицу пользователю
+                excelApp.Visible = true; 
             }
             catch (Exception ex)
             {

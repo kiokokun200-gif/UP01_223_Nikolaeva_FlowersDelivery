@@ -11,6 +11,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Media.Media3D;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using UP01_223_Nikolaeva.Model;
@@ -90,7 +91,11 @@ namespace UP01_223_Nikolaeva.Pages
             if (Login(login, password))
             {
                 MessageBox.Show("Успешный вход");
-                NavigationService.Navigate(new MainPage());
+                if(UserData.CurrentUser.RoleID == 2)
+                {
+                    NavigationService.Navigate(new PageAdmin());
+                }
+                else NavigationService.Navigate(new MainPage());
             }
             else
             {

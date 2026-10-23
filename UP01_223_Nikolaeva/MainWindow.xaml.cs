@@ -24,5 +24,13 @@ namespace UP01_223_Nikolaeva
         {
             InitializeComponent();
         }
+        private void BtnBack_Click(object sender, RoutedEventArgs e)
+        {
+            if (MainFrame.CanGoBack)
+            {
+                MainFrame.GoBack();
+            }
+
+        }
     }
 }
