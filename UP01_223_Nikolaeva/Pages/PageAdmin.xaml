@@ -14,21 +14,21 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="auto"/>
-        </Grid.ColumnDefinitions>
 
-        <StackPanel Orientation="Horizontal" Grid.Column="0">
-            <TextBlock Text="⌕" FontSize="20" Margin="10 10"/>
-            <Grid>
-                <TextBox x:Name="TxtBoxSearch" Width="200" Margin="10 10" TextChanged="TxtBoxSearch_TextChanged" Padding="3"/>
-                <TextBlock x:Name="SearchPlaceHolder" Margin="20 16" Foreground="Gray" MouseLeftButtonUp="SearchPlaceHolder_MouseLeftButtonUp"/>
+        <Grid Grid.Row="0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <TextBlock Text="⌕" FontSize="20" Margin="10 10"/>
+                <Grid>
+                    <TextBox x:Name="TxtBoxSearch" Width="200" Margin="10 10" TextChanged="TxtBoxSearch_TextChanged" Padding="3"/>
+                    <TextBlock x:Name="SearchPlaceHolder" Margin="20 16" Foreground="Gray" MouseLeftButtonUp="SearchPlaceHolder_MouseLeftButtonUp"/>
+                </Grid>
+                <ComboBox x:Name="ComboBoxSort" Width="150" Height="30" SelectionChanged="ComboBoxSort_SelectionChanged"/>
+                <ComboBox x:Name="ComboBoxFiltr" Margin="10 0" Width="150" Height="30" SelectionChanged="ComboBoxFiltr_SelectionChanged"/>
+            </StackPanel>
 
-            </Grid>
-            <ComboBox x:Name="ComboBoxSort" Width="150" Height="30" SelectionChanged="ComboBoxSort_SelectionChanged"/>
-            <ComboBox x:Name="ComboBoxFiltr" Margin="10 0" Width="150" Height="30"  SelectionChanged="ComboBoxFiltr_SelectionChanged"/>
-        </StackPanel>
+            <Button x:Name="BtnDiagram" Content="Диаграмма" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10 0" Padding="10 5" Click="BtnDiagram_Click"/>
+        </Grid>
+
 
         <TabControl Grid.Row="1" x:Name="TabControlTable" SelectionChanged="TabControlTable_SelectionChanged">
             <TabItem Header="Товары" Tag="Good">
@@ -65,6 +65,7 @@
                         <DataGridTextColumn Header="Флорист" Binding="{Binding User2.Name}" Width="auto"/>
                         <DataGridTextColumn Header="Статус" Binding="{Binding OrderStatus.Name}" Width="auto"/>
                         <DataGridTextColumn Header="Способ оплаты" Binding="{Binding PaymentMethod.Name}" Width="auto"/>
+                        <DataGridTextColumn Header="Содержимое заказа" Binding="{Binding GoodsInOrder}" Width="auto"/>
                         <DataGridTemplateColumn Header="Действия" Width="auto">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
@@ -77,7 +78,7 @@
                         </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
-                
+
             </TabItem>
         </TabControl>
     </Grid>

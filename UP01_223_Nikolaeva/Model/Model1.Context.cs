@@ -13,10 +13,10 @@ namespace UP01_223_Nikolaeva.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class KursovayaEntities3 : DbContext
+    public partial class KursovayaEntities : DbContext
     {
-        public KursovayaEntities3()
-            : base("name=KursovayaEntities3")
+        public KursovayaEntities()
+            : base("name=KursovayaEntities")
         {
         }
     

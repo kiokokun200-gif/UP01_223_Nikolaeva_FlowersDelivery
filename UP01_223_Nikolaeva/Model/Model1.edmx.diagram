@@ -4,19 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3c09075f8f564dfe8dc5982753542ff8" Name="Diagram1">
+      <Diagram DiagramId="301becfafef14c99af4f249e9524e742" Name="Diagram1">
         <EntityTypeShape EntityType="KursovayaModel.AvailabilityAddress" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="KursovayaModel.DeliveryAddress" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="KursovayaModel.Good" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="KursovayaModel.Good" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
         <EntityTypeShape EntityType="KursovayaModel.GoodAvailableAddress" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="KursovayaModel.GoodCategory" Width="1.5" PointX="1.5" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="KursovayaModel.GoodCategory" Width="1.5" PointX="1.5" PointY="12.25" IsExpanded="true" />
         <EntityTypeShape EntityType="KursovayaModel.Order" Width="1.5" PointX="5.25" PointY="2.75" IsExpanded="true" />
         <EntityTypeShape EntityType="KursovayaModel.OrderGood" Width="1.5" PointX="7.5" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="KursovayaModel.OrderStatus" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="KursovayaModel.PaymentMethod" Width="1.5" PointX="3" PointY="13.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="KursovayaModel.Review" Width="1.5" PointX="5.25" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="KursovayaModel.User" Width="1.5" PointX="3" PointY="15.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="KursovayaModel.UserRole" Width="1.5" PointX="0.75" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="KursovayaModel.PaymentMethod" Width="1.5" PointX="3" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="KursovayaModel.Review" Width="1.5" PointX="5.25" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="KursovayaModel.User" Width="1.5" PointX="3" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="KursovayaModel.UserRole" Width="1.5" PointX="0.75" PointY="15.375" IsExpanded="true" />
         <AssociationConnector Association="KursovayaModel.FK_DeliveryAddress_AvailabilityAddress" ManuallyRouted="false" />
         <AssociationConnector Association="KursovayaModel.FK_GoodAvailableAddress_AvailabilityAddress" ManuallyRouted="false" />
         <AssociationConnector Association="KursovayaModel.FK_Order_DeliveryAddress" ManuallyRouted="false" />

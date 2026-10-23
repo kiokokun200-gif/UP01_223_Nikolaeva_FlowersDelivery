@@ -256,6 +256,7 @@ namespace UP01_223_Nikolaeva.Pages
             {
                 case "Good":
                     SetupGoods();
+                    BtnDiagram.Visibility = Visibility.Collapsed;
                     break;
 
                 //case "User":
@@ -264,6 +265,7 @@ namespace UP01_223_Nikolaeva.Pages
 
                 case "Order":
                     SetupOrders();
+                    BtnDiagram.Visibility = Visibility.Visible;
                     break;
             }
         }
@@ -297,11 +299,31 @@ namespace UP01_223_Nikolaeva.Pages
 
         private void BtnEditOrder_Click(object sender, RoutedEventArgs e)
         {
-
+            Button btn = (Button)sender;
+            Order order = (Order)btn.DataContext;
+            var wind = new EditOrderWindow(order);
+            wind.ShowDialog();
         }
 
         private void BtnDeleteOrder_Click(object sender, RoutedEventArgs e)
         {
+            Button btn = (Button)sender;
+            Order order = (Order)btn.DataContext;
+            MessageBoxResult res = MessageBox.Show($"Хотите удалить {order.ID} от {order.Date:d}?", "Подтверждение", MessageBoxButton.YesNo);
+            if (res == MessageBoxResult.Yes)
+            {
+                Core.context.Order.Remove(order);
+                Core.context.SaveChanges();
+                LoadOrders();
+                SearchSortFilterOrders();
+                MessageBox.Show("Заказ удален");
+
+            }
+        }
+
+        private void BtnDiagram_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new DiagrammPage());
 
         }
     }
