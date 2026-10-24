@@ -46,11 +46,13 @@ namespace UP01_223_Nikolaeva.Windows
                 MessageBox.Show(error);
                 return;
             }
+            string finalImagePath = string.IsNullOrWhiteSpace(image) ? "/res/noImage.png" : image;
             GoodCategory goodCategory = ComboBoxCategory.SelectedItem as GoodCategory;
             Good good = new Good()
             {
                 Name = name,
                 Price = priceDecimal,
+                ImagePath = finalImagePath,
                 GoodCategory = goodCategory,
             };
             Core.context.Good.Add(good);

@@ -279,7 +279,8 @@ namespace UP01_223_Nikolaeva.Pages
             Good good = (Good)btn.DataContext;
             var wind = new EditGoodWindow(good);
             wind.ShowDialog();
-            LoadGoods();
+            //LoadGoods();
+            DataGridOrders.ItemsSource = Core.context.Order.ToList();
 
         }
 
@@ -308,6 +309,7 @@ namespace UP01_223_Nikolaeva.Pages
             Order order = (Order)btn.DataContext;
             var wind = new EditOrderWindow(order);
             wind.ShowDialog();
+            
             LoadOrders();
         }
 

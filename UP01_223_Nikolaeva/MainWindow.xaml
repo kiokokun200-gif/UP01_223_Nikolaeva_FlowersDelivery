@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:UP01_223_Nikolaeva"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
-        Closing="Window_Closing">
+        Closing="Window_Closing"
+        Icon="/res/logo.png">
     <Grid>
         <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"
                Source="/Pages/AuthPage.xaml" Margin="0,40,0,0"/>
@@ -28,7 +29,7 @@
                 </Button.Content>
             </Button>
         </StackPanel>
-        <Button x:Name="BtnBack" Content="Назад" Width="70" Margin="10" Background="#FFFF7B8E" Foreground="White" Height="35" FontSize="23" VerticalAlignment="Bottom" 
+        <Button x:Name="BtnBack" Content="Назад" Width="70" Margin="10" Height="35" FontSize="23" VerticalAlignment="Bottom" 
                  HorizontalAlignment="Left" Click="BtnBack_Click"/>
     </Grid>
 </Window>

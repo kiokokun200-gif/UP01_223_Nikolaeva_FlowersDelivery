@@ -158,9 +158,6 @@
     <Compile Include="Pages\DiagrammPage.xaml.cs">
       <DependentUpon>DiagrammPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\MainPageAdmin.xaml.cs">
-      <DependentUpon>MainPageAdmin.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\PageAdmin.xaml.cs">
       <DependentUpon>PageAdmin.xaml</DependentUpon>
     </Compile>
@@ -185,10 +182,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\DiagrammPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\MainPageAdmin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -285,9 +278,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="db\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
@@ -333,6 +324,7 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="db\scriptDB.sql" />
     <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
@@ -343,6 +335,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Resource Include="res\logo.png" />
     <Resource Include="res\noImage.png" />
     <Resource Include="res\buket_iz_15_krasnyh_roz.jpg" />
     <Resource Include="res\buket_iz_25_belih_tulpanov.jpg" />

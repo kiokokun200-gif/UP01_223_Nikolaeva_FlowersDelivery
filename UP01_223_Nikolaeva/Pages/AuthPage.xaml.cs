@@ -138,6 +138,7 @@ namespace UP01_223_Nikolaeva.Pages
                 Password = PasswordHash.GetHash(password),
                 RoleID = 1,
                 Login = login,
+                IsLightTheme = true
 
             };
             Core.context.User.Add(newUser);
@@ -175,7 +176,7 @@ namespace UP01_223_Nikolaeva.Pages
             String pwd = "";
             string temp = "";
             Random r = new Random();
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 7; i++)
             {
                 temp = ar[(r.Next(0, ar.Length))];
                 pwd += temp;
