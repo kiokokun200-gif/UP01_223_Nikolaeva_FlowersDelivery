@@ -27,6 +27,9 @@
         <Setter Property="Foreground" Value="Black"/>
 
     </Style>
+    <Style TargetType="ComboBoxItem">
+        <Setter Property="Foreground" Value="Black"/>
+    </Style>
 
 
     <Style TargetType="Button">

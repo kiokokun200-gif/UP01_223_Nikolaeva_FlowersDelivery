@@ -32,7 +32,7 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="CategoryID" Type="int" Nullable="false" />
-          <Property Name="ImagePath" Type="nvarchar" MaxLength="200" />
+          <Property Name="ImagePath" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="Rating" Type="decimal" Precision="3" Scale="2" />
         </EntityType>
         <EntityType Name="GoodAvailableAddress">
@@ -409,7 +409,7 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="CategoryID" Type="Int32" Nullable="false" />
-          <Property Name="ImagePath" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ImagePath" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Rating" Type="Decimal" Precision="3" Scale="2" />
           <NavigationProperty Name="GoodCategory" Relationship="Self.FK_Good_GoodCategory" FromRole="Good" ToRole="GoodCategory" />
           <NavigationProperty Name="GoodAvailableAddress" Relationship="Self.FK_GoodAvailableAddress_Good" FromRole="Good" ToRole="GoodAvailableAddress" />

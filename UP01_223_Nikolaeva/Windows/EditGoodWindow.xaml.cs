@@ -44,16 +44,9 @@ namespace UP01_223_Nikolaeva.Windows
                 MessageBox.Show("Поля не могут быть пустыми!");
                 return;
             }
-            decimal priceDecimal;
-            bool parse = decimal.TryParse(price, out priceDecimal); 
-            if(!parse)
+            if (!PriceParser.TryParse(TxtBoxPrice.Text, out decimal priceDecimal, out string error))
             {
-                MessageBox.Show("Введите корректную цену");
-                return;
-            }
-            else if (priceDecimal <= 0)
-            {
-                MessageBox.Show("Цена должна быть положительной");
+                MessageBox.Show(error);
                 return;
             }
 

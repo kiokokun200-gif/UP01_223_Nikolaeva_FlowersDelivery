@@ -279,6 +279,7 @@ namespace UP01_223_Nikolaeva.Pages
             Good good = (Good)btn.DataContext;
             var wind = new EditGoodWindow(good);
             wind.ShowDialog();
+            LoadGoods();
 
         }
 
@@ -295,6 +296,7 @@ namespace UP01_223_Nikolaeva.Pages
                 SearchSortFilterGoods();
                 MessageBox.Show("Товар удален");
 
+                LoadGoods();
             }
 
 
@@ -306,6 +308,7 @@ namespace UP01_223_Nikolaeva.Pages
             Order order = (Order)btn.DataContext;
             var wind = new EditOrderWindow(order);
             wind.ShowDialog();
+            LoadOrders();
         }
 
         private void BtnDeleteOrder_Click(object sender, RoutedEventArgs e)
@@ -320,6 +323,8 @@ namespace UP01_223_Nikolaeva.Pages
                 LoadOrders();
                 SearchSortFilterOrders();
                 MessageBox.Show("Заказ удален");
+                LoadOrders();
+
 
             }
         }
@@ -334,6 +339,7 @@ namespace UP01_223_Nikolaeva.Pages
         {
             var wind = new AddGoodWindow();
             wind.ShowDialog();
+            DataGridGoods.ItemsSource = Core.context.Good.ToList();
         }
     }
 }

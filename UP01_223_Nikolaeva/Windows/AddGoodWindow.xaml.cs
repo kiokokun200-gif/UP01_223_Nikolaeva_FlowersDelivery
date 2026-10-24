@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using UP01_223_Nikolaeva.Model;
+using UP01_223_Nikolaeva;
 
 namespace UP01_223_Nikolaeva.Windows
 {
@@ -40,24 +41,16 @@ namespace UP01_223_Nikolaeva.Windows
                 MessageBox.Show("Поля не могут быть пустыми!");
                 return;
             }
-            decimal priceDecimal;
-            bool parse = decimal.TryParse(price, out priceDecimal);
-            if (!parse)
+            if (!PriceParser.TryParse(TxtBoxPrice.Text, out decimal priceDecimal, out string error))
             {
-                MessageBox.Show("Введите корректную цену");
+                MessageBox.Show(error);
                 return;
             }
-            else if(priceDecimal <= 0)
-            {
-                MessageBox.Show("Цена должна быть положительной");
-                return;
-            } 
             GoodCategory goodCategory = ComboBoxCategory.SelectedItem as GoodCategory;
             Good good = new Good()
             {
                 Name = name,
                 Price = priceDecimal,
-                ImagePath = image,
                 GoodCategory = goodCategory,
             };
             Core.context.Good.Add(good);
