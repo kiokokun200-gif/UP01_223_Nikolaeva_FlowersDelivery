@@ -23,6 +23,8 @@ namespace UP01_223_Nikolaeva
         public MainWindow()
         {
             InitializeComponent();
+            MainFrame.Navigated += MainFrame_Navigated;
+
         }
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
@@ -31,6 +33,34 @@ namespace UP01_223_Nikolaeva
                 MainFrame.GoBack();
             }
 
+        }
+        private void MainFrame_Navigated(object sender, NavigationEventArgs e)
+        {
+            if (e.Content is Page page && !string.IsNullOrEmpty(page.Title))
+                this.Title = page.Title;
+            else
+                this.Title = "Сервис доставки цветов и подарков";
+            UpdateBackButton();
+        }
+        private void UpdateBackButton()
+        {
+            bool canGoBack = MainFrame.CanGoBack;
+            bool currentIsAuth = MainFrame.Content is Pages.AuthPage;
+
+            BtnBack.Visibility = (canGoBack && !currentIsAuth)
+                ? Visibility.Visible
+                : Visibility.Collapsed;
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            var res = MessageBox.Show(
+                "Вы действительно хотите выйти из приложения?",
+                "Подтверждение выхода",
+                MessageBoxButton.YesNo);
+
+            if (res == MessageBoxResult.Yes)
+                e.Cancel = true;
         }
     }
 }

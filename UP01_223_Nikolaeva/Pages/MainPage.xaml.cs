@@ -34,7 +34,6 @@ namespace UP01_223_Nikolaeva.Pages
             InitializeComponent();
             LoadGoods();
             LoadData();
-            //BtnAddGood.DataContext = goods;
             
             
         }
@@ -97,7 +96,6 @@ namespace UP01_223_Nikolaeva.Pages
             }
             if (selectedSort == "Сначала лучшие")
             {
-                //фильтрация по рейтингу, добавить
                 result = result.OrderByDescending(s => s.Rating).ToList();
             }
             else if (selectedSort == "Сначала дороже")
@@ -118,41 +116,7 @@ namespace UP01_223_Nikolaeva.Pages
             SearchSortFilrt();
         }
 
-        
 
-        private void BtnDeleteGood_Click(object sender, RoutedEventArgs e)
-        {
-            Button btn = (Button)sender;
-            Good good = (Good)btn.DataContext;
-            MessageBoxResult result = MessageBox.Show($"Хотите удалить товар {good.Name}", "Удаление продукта", MessageBoxButton.YesNo);
-            if (result == MessageBoxResult.Yes) { 
-                Core.context.Good.Remove(good);
-                Core.context.SaveChanges();
-                MessageBox.Show("Товар удален");
-
-                LoadGoods();
-            }
-            else return;
-        }
-
-        private void BtnEditGood_Click(object sender, RoutedEventArgs e)
-        {
-            Button btn = (Button)sender;
-            Good good = (Good)btn.DataContext;
-
-            var wind = new EditGoodWindow(good);
-            wind.ShowDialog();
-            LoadGoods();
-
-        }
-
-        private void BtnAddGood_Click(object sender, RoutedEventArgs e)
-        {
-            var wind = new AddGoodWindow();
-            wind.ShowDialog();
-            LoadGoods();
-
-        }
 
         private void BtnChangeTheme_Click(object sender, RoutedEventArgs e)
         {

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UP01_223_Nikolaeva.Windows"
         mc:Ignorable="d"
-        Title="AddGoodWindow" Height="200" Width="400">
+        Title="Добавление товара" Height="200" Width="400">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>

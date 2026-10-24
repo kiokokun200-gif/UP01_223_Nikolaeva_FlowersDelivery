@@ -257,6 +257,7 @@ namespace UP01_223_Nikolaeva.Pages
                 case "Good":
                     SetupGoods();
                     BtnDiagram.Visibility = Visibility.Collapsed;
+                    BtnAdd.Visibility = Visibility.Visible;
                     break;
 
                 //case "User":
@@ -266,6 +267,8 @@ namespace UP01_223_Nikolaeva.Pages
                 case "Order":
                     SetupOrders();
                     BtnDiagram.Visibility = Visibility.Visible;
+                    BtnAdd.Visibility = Visibility.Collapsed;
+
                     break;
             }
         }
@@ -325,6 +328,12 @@ namespace UP01_223_Nikolaeva.Pages
         {
             NavigationService.Navigate(new DiagrammPage());
 
+        }
+
+        private void BtnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            var wind = new AddGoodWindow();
+            wind.ShowDialog();
         }
     }
 }

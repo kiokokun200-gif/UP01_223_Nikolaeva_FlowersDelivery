@@ -26,7 +26,7 @@ namespace UP01_223_Nikolaeva.Windows
             InitializeComponent();
             _goodCategories = Core.context.GoodCategory.ToList();
             ComboBoxCategory.ItemsSource = _goodCategories;
-            ComboBoxCategory.DisplayMemberPath = Name;
+            ComboBoxCategory.DisplayMemberPath = "Name";
 
         }
 

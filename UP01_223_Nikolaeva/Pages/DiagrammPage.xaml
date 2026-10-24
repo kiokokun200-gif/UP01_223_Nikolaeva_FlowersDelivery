@@ -7,7 +7,7 @@
       xmlns:local="clr-namespace:UP01_223_Nikolaeva.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="DiagrammPage">
+      Title="Диаграмма">
 
     <Grid >
         <Grid.RowDefinitions>

@@ -34,25 +34,38 @@ namespace UP01_223_Nikolaeva.Pages
         {
        
             string name = TxtBoxRegName.Text;
+            string email = TxtBoxRegEmail.Text;
             string login = TxtBoxRegLogin.Text;
             string phone = TxtBoxRegPhone.Text;
             string password = PassRegPassword.Password;
 
-            if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(name) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(phone))
+            if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(name) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(phone))
             {
                 MessageBox.Show("Заполните все поля");
                 return;
             }
+            if(!TxtBoxRegPhone.MaskCompleted)
+            {
+                MessageBox.Show("Введите номер телефона полностью");
+                return;
+            }
+            if (!email.Contains("@") || !email.Contains(".") || email.IndexOf('@') > email.LastIndexOf('.'))
+            {
+                MessageBox.Show("Некорректный Email");
+                return;
+            }
+
             string mess;
             if(!PasswordChecker.CheckPassword(password, out mess))
             {
                 MessageBox.Show(mess);
                 return;
             }
+            
 
 
 
-            if (Registr(login, password, phone, name))
+            if (Registr(login, password, phone, name, email))
             {
                 MessageBox.Show("Регистрация успешна");
                 NavigationService.Navigate(new MainPage());
@@ -67,7 +80,7 @@ namespace UP01_223_Nikolaeva.Pages
         private bool Login(string login, string password)
         {
             string hashPass = PasswordHash.GetHash(password);
-            var user = Core.context.User.FirstOrDefault(u => u.Email == login && u.Password == hashPass);
+            var user = Core.context.User.FirstOrDefault(u => u.Login == login && u.Password == hashPass);
             if (user == null) return false;
             else
             {
@@ -109,16 +122,17 @@ namespace UP01_223_Nikolaeva.Pages
             }
         }
 
-        private bool Registr(string login, string password, string phone, string name)
+        private bool Registr(string login, string password, string phone, string name, string email)
         {
-            if (Core.context.User.Any(u => u.Email == login)) return false;
+            if (Core.context.User.Any(u => u.Email == email)) return false;
             User newUser = new User()
             {
                 Name = name,
-                Email = login,
+                Email = email,
                 Phone = phone,
                 Password = PasswordHash.GetHash(password),
                 RoleID = 1,
+                Login = login,
 
             };
             Core.context.User.Add(newUser);
