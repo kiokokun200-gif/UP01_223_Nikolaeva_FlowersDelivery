@@ -26,23 +26,23 @@
                 <TextBlock x:Name="SearchPlaceHolder" Text="Найти товары" Margin="20 16" Foreground="Gray" MouseLeftButtonUp="SearchPlaceHolder_MouseLeftButtonUp"/>
                 
             </Grid>
-            <ComboBox x:Name="ComboBoxSort" Width="150" Height="30" SelectedIndex="0" SelectionChanged="ComboBoxSort_SelectionChanged"/>
+            <ComboBox x:Name="ComboBoxSort" Width="150" Height="30" SelectedIndex="0" Foreground="Black" SelectionChanged="ComboBoxSort_SelectionChanged"/>
             <ComboBox x:Name="ComboBoxFiltr" Margin="10 0" Width="150" Height="30" SelectedIndex="0" SelectionChanged="ComboBoxFiltr_SelectionChanged"/>
         </StackPanel>
 
-        <StackPanel Grid.Column="1" Orientation="Horizontal">
+        <!--<StackPanel Grid.Column="1" Orientation="Horizontal">
             <Button Content="Сменить тему" x:Name="BtnChangeTheme" Click="BtnChangeTheme_Click" />
             <Button x:Name="BtnAccount" Background="Transparent" BorderThickness="0" Margin="10" Click="BtnAccount_Click">
                 <Button.Content>
                     <Image Source="/res/account.png" Width="30"/>
                 </Button.Content>
             </Button>
-        </StackPanel>
+        </StackPanel>-->
 
         <ListBox Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}" x:Name="ListBoxGoods" Grid.ColumnSpan="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Grid Margin="10">
+                    <Grid Margin="10" Width="180" Height="220">
                             <Grid.RowDefinitions>
                             <RowDefinition Height="140"/>
                             <RowDefinition Height="Auto"/>
@@ -52,13 +52,13 @@
 
                             <Image Grid.Row="0" Source="{Binding ImagePath}" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,5"/>
 
-                            <TextBlock Grid.Row="1" Text="{Binding Price, StringFormat={}{0} ₽}" FontSize="18" FontWeight="Bold" Foreground="#333333" Margin="0,5,0,2"/>
+                            <TextBlock Grid.Row="1" Text="{Binding Price, StringFormat={}{0} ₽}" FontSize="18" FontWeight="Bold" Margin="0,5,0,2"/>
 
-                            <TextBlock Grid.Row="2" Text="{Binding Name}" FontSize="13" Foreground="#666666" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" Margin="0,0,0,5"/>
+                            <TextBlock Grid.Row="2" Text="{Binding Name}" FontSize="13" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" Margin="0,0,0,5"/>
 
                             <StackPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Bottom">
                                 <TextBlock Text="{Binding Rating, StringFormat={}★ {0:0.#}}" Foreground="#FFBA00" FontWeight="Bold" FontSize="12"/>
-                                <TextBlock Text="{Binding ReviewCount, StringFormat={}{0} отзывов}" Margin="6,0,0,0" Foreground="#999999" FontSize="12"/>
+                                <TextBlock Text="{Binding ReviewCount, StringFormat={}{0} отзывов}" Margin="6,0,0,0" Foreground="#FF929292" FontSize="12"/>
                             </StackPanel>
                         </Grid>
                 </DataTemplate>

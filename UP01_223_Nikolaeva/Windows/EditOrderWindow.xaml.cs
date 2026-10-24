@@ -54,6 +54,8 @@ namespace UP01_223_Nikolaeva.Windows
             if (_order.FloristID == 0) _order.FloristID = null;
 
             Core.context.SaveChanges();
+            MessageBox.Show("Данные сохранены");
+            this.Close();
 
         }
     }

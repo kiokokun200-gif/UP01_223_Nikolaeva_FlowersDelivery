@@ -13,6 +13,20 @@
         <Setter Property="Background" Value="#FF4E4E4E"/>
 
     </Style>
+    <Style TargetType="Window">
+        <Setter Property="Background" Value="#FF4E4E4E"/>
+
+    </Style>
+
+
+    <Style TargetType="TextBlock">
+        <Setter Property="Foreground" Value="White"/>
+
+    </Style>
+    <Style TargetType="ComboBox">
+        <Setter Property="Foreground" Value="Black"/>
+
+    </Style>
 
 
     <Style TargetType="Button">

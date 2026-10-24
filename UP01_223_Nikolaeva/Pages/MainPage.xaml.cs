@@ -120,21 +120,22 @@ namespace UP01_223_Nikolaeva.Pages
 
         private void BtnChangeTheme_Click(object sender, RoutedEventArgs e)
         {
-            var currentDictionaries = Application.Current.Resources.MergedDictionaries;
-            currentDictionaries.Clear();
+            //var currentDictionaries = Application.Current.Resources.MergedDictionaries;
+            //currentDictionaries.Clear();
 
-            string themePath = "/Themes/DictionaryStyleBlack.xaml";
+            //string themePath = "/Themes/DictionaryStyleBlack.xaml";
 
-            if (isBlackThemeNow)
-            {
-                themePath = "/Themes/DictionaryStyle.xaml";
-            }
-            isBlackThemeNow = !isBlackThemeNow;
+            //if (isBlackThemeNow)
+            //{
+            //    themePath = "/Themes/DictionaryStyle.xaml";
+            //}
+            //isBlackThemeNow = !isBlackThemeNow;
 
-            currentDictionaries.Add(new ResourceDictionary
-            {
-                Source = new Uri(themePath, UriKind.Relative)
-            });
+            //currentDictionaries.Add(new ResourceDictionary
+            //{
+            //    Source = new Uri(themePath, UriKind.Relative)
+            //});
+            ThemeChanger.ChangeTheme();
         }
 
         private void BtnAccount_Click(object sender, RoutedEventArgs e)

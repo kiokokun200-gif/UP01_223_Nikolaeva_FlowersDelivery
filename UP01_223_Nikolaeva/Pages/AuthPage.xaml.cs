@@ -104,11 +104,16 @@ namespace UP01_223_Nikolaeva.Pages
             if (Login(login, password))
             {
                 MessageBox.Show("Успешный вход");
-                if(UserData.CurrentUser.RoleID == 2)
+                if (UserData.CurrentUser.RoleID == 2)
                 {
                     NavigationService.Navigate(new PageAdmin());
+                    ThemeChanger.ApplyTheme(UserData.CurrentUser.IsLightTheme);
                 }
-                else NavigationService.Navigate(new MainPage());
+                else
+                {
+                    NavigationService.Navigate(new MainPage());
+                    ThemeChanger.ApplyTheme(UserData.CurrentUser.IsLightTheme);
+                }
             }
             else
             {

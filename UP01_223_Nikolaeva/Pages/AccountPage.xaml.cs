@@ -35,6 +35,7 @@ namespace UP01_223_Nikolaeva.Pages
             {
                 UserData.CurrentUser = null;
                 MessageBox.Show("Вы вышли из аккаунта");
+                ThemeChanger.ApplyTheme(true);
                 NavigationService.Navigate(new AuthPage());
 
             }

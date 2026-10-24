@@ -26,5 +26,8 @@
     <Style TargetType="ListBox">
         <Setter Property="Background" Value="#FFFFD8D8"/>
     </Style>
+    <Style TargetType="Window">
+        <Setter Property="Background" Value="#FFFFD8D8"/>
+    </Style>
 
 </ResourceDictionary>

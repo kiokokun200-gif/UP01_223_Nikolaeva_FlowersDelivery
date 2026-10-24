@@ -109,8 +109,9 @@
           <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="RoleID" Type="int" Nullable="false" />
-          <Property Name="Phone" Type="nvarchar" MaxLength="20" />
-          <Property Name="Login" Type="nvarchar" MaxLength="100" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IsLightTheme" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="UserRole">
           <Key>
@@ -505,13 +506,14 @@
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="RoleID" Type="Int32" Nullable="false" />
-          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Order" Relationship="Self.FK_Order_CourierUser" FromRole="User" ToRole="Order" />
           <NavigationProperty Name="Order1" Relationship="Self.FK_Order_CustomerUser" FromRole="User" ToRole="Order" />
           <NavigationProperty Name="Order2" Relationship="Self.FK_Order_FloristUser" FromRole="User" ToRole="Order" />
           <NavigationProperty Name="Review" Relationship="Self.FK_Review_CustomerUser" FromRole="User" ToRole="Review" />
           <NavigationProperty Name="UserRole" Relationship="Self.FK_User_UserRole" FromRole="User" ToRole="UserRole" />
-          <Property Name="Login" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Login" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsLightTheme" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="UserRole">
           <Key>
@@ -889,6 +891,7 @@
           <EntitySetMapping Name="User">
             <EntityTypeMapping TypeName="KursovayaModel.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="IsLightTheme" ColumnName="IsLightTheme" />
                 <ScalarProperty Name="Login" ColumnName="Login" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />

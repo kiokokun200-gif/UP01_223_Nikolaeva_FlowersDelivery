@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using UP01_223_Nikolaeva.Pages;
 
 namespace UP01_223_Nikolaeva
 {
@@ -38,8 +39,8 @@ namespace UP01_223_Nikolaeva
         {
             if (e.Content is Page page && !string.IsNullOrEmpty(page.Title))
                 this.Title = page.Title;
-            else
-                this.Title = "Сервис доставки цветов и подарков";
+            bool isAuth = MainFrame.Content is Pages.AuthPage || MainFrame.Content is Pages.AccountPage;
+            TopRightPanel.Visibility = isAuth ? Visibility.Collapsed : Visibility.Visible;
             UpdateBackButton();
         }
         private void UpdateBackButton()
@@ -59,8 +60,17 @@ namespace UP01_223_Nikolaeva
                 "Подтверждение выхода",
                 MessageBoxButton.YesNo);
 
-            if (res == MessageBoxResult.Yes)
+            if (res != MessageBoxResult.Yes)
                 e.Cancel = true;
+        }
+        private void BtnTheme_Click(object sender, RoutedEventArgs e)
+        {
+            ThemeChanger.ChangeTheme();
+        }
+
+        private void BtnAccount_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new Pages.AccountPage());
         }
     }
 }

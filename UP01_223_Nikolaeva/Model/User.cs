@@ -30,6 +30,7 @@ namespace UP01_223_Nikolaeva.Model
         public int RoleID { get; set; }
         public string Phone { get; set; }
         public string Login { get; set; }
+        public bool IsLightTheme { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Order { get; set; }
