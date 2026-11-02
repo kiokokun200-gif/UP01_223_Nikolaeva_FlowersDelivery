@@ -115,6 +115,10 @@ namespace UP01_223_Nikolaeva.Pages
             SearchSortFilrt();
         }
 
+        private void ListBoxGoods_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Good good = (Good)sender;
 
+        }
     }
 }

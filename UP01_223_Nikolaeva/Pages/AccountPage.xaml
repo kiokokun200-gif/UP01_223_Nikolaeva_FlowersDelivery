@@ -10,14 +10,14 @@
 
     <Grid>
         
-        <StackPanel Margin="10">
-            <TextBlock Text="{Binding Name}" FontSize="20"/>
-            <TextBlock Text="{Binding Email, StringFormat=Почта: {0}}"/>
-            <TextBlock Text="{Binding Phone, StringFormat=Номер телефона: {0}}"/>
+        <StackPanel Margin="15">
+            <TextBlock Text="{Binding Name}" FontSize="30" Margin="0 0 0 10"/>
+            <TextBlock Text="{Binding Email, StringFormat=Почта: {0}}" Margin="0 0 0 10" FontSize="20"/>
+            <TextBlock Text="{Binding Phone, StringFormat=Номер телефона: {0}}" Margin="0 0 0 10" FontSize="20"/>
 
             <StackPanel Orientation="Horizontal">
-                <Button Content="Выйти" x:Name="BtnLogOut" Margin="0 0 20 0" Click="BtnLogOut_Click"/>
-                <Button Content="Сменить пароль" x:Name="BtnChangePassword"  Click="BtnChangePassword_Click"/>
+                <Button Content="Выйти" x:Name="BtnLogOut" Margin="0 0 20 0" Click="BtnLogOut_Click"  FontSize="15"/>
+                <Button Content="Сменить пароль" x:Name="BtnChangePassword"  Click="BtnChangePassword_Click"  FontSize="15"/>
             </StackPanel>
             
         </StackPanel>

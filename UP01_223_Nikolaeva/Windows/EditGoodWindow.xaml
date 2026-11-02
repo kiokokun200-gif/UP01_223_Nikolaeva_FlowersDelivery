@@ -14,7 +14,7 @@
             
         </Grid.ColumnDefinitions>
 
-        <Image Grid.Column="0" Source="{Binding Image}" Width="250"/>
+        <Image Grid.Column="0" Source="{Binding ImagePath}" Width="250"/>
 
 
         <StackPanel Grid.Column="1">
